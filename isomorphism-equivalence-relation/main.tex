@@ -1,0 +1,254 @@
+\documentclass{beamer}
+\usetheme{Boadilla}
+
+\usepackage{amssymb}
+
+\title{Isomorphism is an Equivalence Relation}
+\subtitle{Proof Walkthrough}
+\author{Adam Grant}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+
+\begin{frame}{Isomorphic}
+    The nicest definition of isomorphism I've seen is by Roland Backhouse:
+
+    \begin{definition}
+        Object $x$ and $y$ in the same category are said to be \emph{isomorphic} if there are two arrows $f \in x \leftarrow y$ and $g \in y \leftarrow x$ such that $f \cdot g = id_x$ and $g \cdot f = id_y$, i.e. they are each other's inverses.  If this is the case we write $x \cong y$ or, if we want to be explicit about the arrows, we write $f \in x \cong y \ni g$.
+    \end{definition}
+    
+    In this presentation, we will be explicit about the arrows.  We'll also make the existential quantification explicit and write:
+    
+    \begin{equation*}
+        x \cong y  \equiv  \exists(f,g :: f \in x \cong y \ni g)
+    \end{equation*}
+    
+    which will help when writing proofs.
+\end{frame}
+
+
+\begin{frame}{Our task}
+    Show that $\cong$ is an \emph{equivalence relation}.
+\end{frame}
+
+
+\begin{frame}{Equivalence Relation}
+    \begin{definition}[equivalence relation]
+        A relation is an \emph{equivalence relation} if it is \emph{reflexive}, \emph{symmetric}, and \emph{transitive}.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Equivalence Relation}
+    \begin{definition}[reflexive]
+        A relation $R$ is \emph{reflexive} when $\forall(a :: a R a)$.
+    \end{definition}
+    
+    \begin{definition}[symmetric]
+        A relation $R$ is \emph{symmetric} when $\forall(b,a : b R a : a R b)$.
+    \end{definition}
+    
+    \begin{definition}[transitive]
+        A relation $R$ is \emph{transitive} when $\forall(c,b,a : c R b \wedge b R a : c R a)$.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Proof obligations}
+    \begin{block}{Show that $\cong$ is an Equivalence Relation}
+    \begin{itemize}
+        \item[$\bullet$] Reflexivity: $\forall(a :: a \cong a)$
+        \item[$\bullet$] Symmetry: $\forall(b,a : b \cong a : a \cong b)$
+        \item[$\bullet$] Transitivity: $\forall(c,b,a : c \cong b \wedge b \cong a : c \cong a)$
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+
+
+\begin{frame}
+    \begin{block}{Reflexivity: $\forall(a :: a \cong a)$}
+    \begin{itemize}
+        \item[$\bullet$] $a \cong a$
+        \item[$\equiv$] Definition of $\cong$
+        \item[] $\exists(f,g :: f \in a \cong a \ni g)$
+        \item[$\equiv$] Expand abbreviation
+        \item[] $\exists(f,g :: f \cdot g = id_a \wedge g \cdot f = id_a)$
+        \item[$\Leftarrow$] $\exists$-introduction, with $f,g:= id_a, id_a$
+        \item[] $id_a \cdot id_a = id_a \wedge id_a \cdot id_a = id_a$
+        \item[$\equiv$] $\wedge$-idempotent
+        \item[] $id_a \cdot id_a = id_a$
+        \item[$\square$]
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Proof obligations}
+    \begin{block}{Show that $\cong$ is an Equivalence Relation}
+    \begin{itemize}
+        \item[$\checkmark$] Reflexivity: $\forall(a :: a \cong a)$
+        \item[$\bullet$] Symmetry: $\forall(b,a : b \cong a : a \cong b)$
+        \item[$\bullet$] Transitivity: $\forall(c,b,a : c \cong b \wedge b \cong a : c \cong a)$
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}
+    \begin{block}{Symmetry: $\forall(b,a : b \cong a : a \cong b)$}
+    \begin{itemize}
+        \item[$\bullet$] $b \cong a$
+        \item[$\equiv$] Definition of $\cong$
+        \item[] $\exists(f,g :: f \in b \cong a \ni g )$
+        \item[$\equiv$] Expand abbreviation
+        \item[] $\exists(f,g :: f \cdot g = id_b \wedge g \cdot f = id_a)$
+        \item[$\equiv$] $\wedge$-symmetric; Rearrange dummies
+        \item[] $\exists(g,f :: g \cdot f = id_a\wedge f \cdot g = id_b)$
+        \item[$\equiv$] Abbreviate
+        \item[] $\exists(g,f :: g \in a \cong b \ni f)$
+        \item[$\equiv$] Definition of $\cong$
+        \item[] $a \cong b$
+        \item[$\square$]
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Proof obligations}
+    \begin{block}{Show that $\cong$ is an Equivalence Relation}
+    \begin{itemize}
+        \item[$\checkmark$] Reflexivity: $\forall(a :: a \cong a)$
+        \item[$\checkmark$] Symmetry: $\forall(b,a : b \cong a : a \cong b)$
+        \item[$\bullet$] Transitivity: $\forall(c,b,a : c \cong b \wedge b \cong a : c \cong a)$
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}
+    \begin{block}{Transitivity: $\forall(c,b,a : c \cong b \wedge b \cong a : c \cong a)$}
+    \begin{itemize}
+        \item[$\bullet$] $b \cong a$
+    \end{itemize}
+    \end{block}
+    
+    \begin{block}{Context}
+    \begin{enumerate}
+        \item[-] $c \cong b$
+        \item[-] $b \cong a$
+    \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Building Context}
+    \begin{block}{Context}
+    \begin{enumerate}
+        \item[-] $c \cong b$
+        \item[-] $b \cong a$
+        \item[+] $\exists(f,g :: f \in c \cong b \ni g)$
+        \item[+] $\exists(f,g :: f \in b \cong a \ni g)$
+        \item[+] Define f,g \\
+                 $f \in c \cong b \ni g$ \\
+                 $f \cdot g = id_c \wedge g \cdot f = id_b$
+        \item[+] Define h,j \\
+                 $h \in b \cong a \ni j$ \\
+                 $h \cdot j = id_b \wedge j \cdot h = id_a$
+    \end{enumerate}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Building Context}
+    \begin{block}{Express $id_c$ in terms of $f,g,h,k$}
+    \begin{itemize}
+        \item[$\bullet$] $id_c$
+        \item[=] Definition of $f,g$
+        \item[] $f \cdot g$
+        \item[=] Identity
+        \item[] $f \cdot id_b \cdot g$
+        \item[=] Definition of $h,j$
+        \item[] $f \cdot h \cdot j \cdot g$
+        \item[$\square$]
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Building Context}
+    \begin{block}{Context}
+    \begin{itemize}
+        \item[$\cdots$]
+        \item[+] Define f,g \\
+                 $f \in c \cong b \ni g$ \\
+                 $f \cdot g = id_c \wedge g \cdot f = id_b$
+        \item[+] Define h,j \\
+                 $h \in b \cong a \ni j$ \\
+                 $h \cdot j = id_b \wedge j \cdot h = id_a$
+        \item[+] $id_c = f.h.j.k$
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Building Context}
+    \begin{block}{Express $id_a$ in terms of $f,g,h,k$}
+    \begin{itemize}
+        \item[$\bullet$] $id_a$
+        \item[=] Definition of $h,j$
+        \item[] $j \cdot h$
+        \item[=] Identity
+        \item[] $j \cdot id_b \cdot h$
+        \item[=] Definition of $h,j$
+        \item[] $j \cdot g \cdot f \cdot h$
+        \item[$\square$]
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Building Context}
+    \begin{block}{Context}
+    \begin{itemize}
+        \item[$\cdots$]
+        \item[+] $id_c = f \cdot h \cdot j \cdot g$
+        \item[+] $id_a = j \cdot g \cdot f \cdot h$
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}
+    \begin{block}{Transitivity: $\forall(c,b,a : c \cong b \wedge b \cong a : c \cong a)$}
+    \begin{itemize}
+        \item[$\bullet$] $b \cong a$
+        \item[$\equiv$] Definition of $\cong$
+        \item[] $\exists(f,g :: f \in c \cong a \ni g)$
+        \item[$\equiv$] Expand abbreviation
+        \item[] $\exists(f,g :: f \cdot g = id_c \wedge g \cdot f = id_a)$
+        \item[$\Leftarrow$] $\exists$-introduction
+        \item[] $(f \cdot g = id_c \wedge g \cdot f = id_a)[f,g:= f \cdot h, j \cdot g]$
+        \item[$\equiv$] Textual substitution
+        \item[] $(f \cdot h) \cdot (j \cdot g) = id_c \wedge (j \cdot g) \cdot (f \cdot h) = id_a$
+        \item[$\equiv$] Context
+        \item[] $true$
+        \item[$\square$]
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Proof obligations}
+    \begin{block}{Show that $\cong$ is an Equivalence Relation}
+    \begin{itemize}
+        \item[$\checkmark$] Reflexivity: $\forall(a :: a \cong a)$
+        \item[$\checkmark$] Symmetry: $\forall(b,a : b \cong a : a \cong b)$
+        \item[$\checkmark$] Transitivity: $\forall(c,b,a : c \cong b \wedge b \cong a : c \cong a)$
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+\end{document}
